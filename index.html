@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="de">
 <head>
@@ -151,6 +152,7 @@
       <h2>Familie</h2>
 
       <a class="link"
+         id="addressLink"
          href="https://www.google.com/maps/search/?api=1&amp;query=Neue+Stra%C3%9Fe+67%2F1%2C+73732+Esslingen">
         <span class="symbol" aria-hidden="true">⌖</span>
         <span class="details">
@@ -232,7 +234,45 @@
       </a>
     </section>
 
-    <footer> </footer>
+    <footer></footer>
   </main>
+
+  <script>
+    // Adresse für alle Karten-Apps
+    const address = "Neue Straße 67/1, 73732 Esslingen";
+
+    // Adress-Link finden
+    const addressLink = document.getElementById("addressLink");
+
+    // Betriebssystem erkennen
+    const ua = navigator.userAgent;
+
+    const isIOS =
+      /iPhone|iPad|iPod/.test(ua) ||
+      (navigator.platform === "MacIntel" &&
+       navigator.maxTouchPoints > 1);
+
+    const isAndroid = /Android/i.test(ua);
+
+    // Je nach Gerät das passende Kartenziel setzen
+    if (isIOS) {
+      // iPhone und iPad: Apple Karten
+      addressLink.href =
+        "https://maps.apple.com/?q=" +
+        encodeURIComponent(address);
+
+    } else if (isAndroid) {
+      // Android: Google Maps
+      addressLink.href =
+        "https://www.google.com/maps/search/?api=1&query=" +
+        encodeURIComponent(address);
+
+    } else {
+      // Windows, Mac und andere Geräte: Google Maps im Browser
+      addressLink.href =
+        "https://www.google.com/maps/search/?api=1&query=" +
+        encodeURIComponent(address);
+    }
+  </script>
 </body>
 </html>
