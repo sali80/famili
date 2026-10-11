@@ -132,6 +132,14 @@
       text-align: center;
     }
 
+    .footer-date {
+      display: block;
+      margin-top: 6px;
+      font-size: 10px;
+      color: #637080;
+      letter-spacing: 0.08em;
+    }
+
     @media (prefers-reduced-motion: reduce) {
       .link {
         transition: none;
@@ -234,7 +242,9 @@
       </a>
     </section>
 
-    <footer></footer>
+    <footer>
+      <span id="lastEditDate" class="footer-date"></span>
+    </footer>
   </main>
 
   <script>
@@ -275,6 +285,18 @@
         "https://www.google.com/maps/search/?api=1&query=" +
         encodeURIComponent(address);
     }
+
+    // Letzte Änderungszeit im Format YYMMDD hhmmss anzeigen
+    const now = new Date();
+    const yy = String(now.getFullYear()).slice(-2);
+    const mm = String(now.getMonth() + 1).padStart(2, "0");
+    const dd = String(now.getDate()).padStart(2, "0");
+    const hh = String(now.getHours()).padStart(2, "0");
+    const min = String(now.getMinutes()).padStart(2, "0");
+    const ss = String(now.getSeconds()).padStart(2, "0");
+
+    document.getElementById("lastEditDate").textContent =
+      `${yy}${mm}${dd} ${hh}${min}${ss}`;
   </script>
 </body>
 </html>
