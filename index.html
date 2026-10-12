@@ -308,5 +308,32 @@
         encodeURIComponent(address);
     }
   </script>
+
+  <!-- GoatCounter Analytics -->
+  <script>
+    window.goatcounter = {
+      path: function(p) {
+        const parts = location.pathname.split('/').filter(Boolean);
+        const project = parts[0] || 'root';
+        const pageParts = parts.slice(1);
+
+        if (
+          pageParts.length === 0 ||
+          (pageParts.length === 1 &&
+           /^index\.html?$/i.test(pageParts[0]))
+        ) {
+          pageParts.length = 0;
+        }
+
+        return '/' + project + '/' +
+          (pageParts.length ? pageParts.join('/') : '');
+      }
+    };
+  </script>
+  <script data-goatcounter="https://sali80.goatcounter.com/count"
+          async src="https://gc.zgo.at/count.js"></script>
+
+</body>
+</html>
 </body>
 </html>
